@@ -10,7 +10,8 @@
         android:id="@+id/select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/select_message" />
+        android:text="@string/select_message"
+        android:textSize="@dimen/large_text"/>
 
     <Spinner
         android:id="@+id/spinner"
@@ -18,6 +19,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/medium_spacing"
         android:padding="@dimen/small_spacing" />
+
+    <Button
+        android:id="@+id/scale_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/large_spacing"
+        android:text="@string/button_text" />
 
 
 </LinearLayout>

@@ -15,4 +15,5 @@
         <item>B</item>
     </string-array>
     <string name="select_message">Choose Root Note:</string>
+    <string name="button_text">Generate Scale</string>
 </resources>

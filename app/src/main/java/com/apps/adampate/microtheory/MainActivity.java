@@ -1,14 +1,17 @@
 package com.apps.adampate.microtheory;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
+    private String rootNote;
+    private NoteScale scale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -21,6 +24,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+        Button btn = (Button) findViewById(R.id.scale_button);
+        btn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                scale = new NoteScale(rootNote);
+            }
+        });
 
 
     }
@@ -28,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
-        parent.getItemAtPosition(position);
+        rootNote = (String) parent.getItemAtPosition(position);
     }
 
     @Override
@@ -36,4 +48,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     {
 
     }
+
+
 }
