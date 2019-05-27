@@ -1,8 +1,10 @@
 package com.apps.adampate.microtheory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-//Creates note scale based on key selected by user
+//Creates chromatic note scale based on key selected by user
 
 public class NoteScale
 {
@@ -24,13 +26,35 @@ public class NoteScale
         }
     };
 
+    private ArrayList<String> scalePositions = new ArrayList<String>()
+    {
+        {
+            add("root");
+            add("minorSecond");
+            add("majorSecond");
+            add("minorThird");
+            add("majorThird");
+            add("fourth");
+            add("fifth");
+            add("minorSixth");
+            add("majorSixth");
+            add("triTone");
+            add("minorSeventh");
+            add("majorSeventh");
+        }
+    };
+
     private String key;
     private String note;
+    private String tone;
+    private Map<String, String> scale = new HashMap<String, String>();
+
 
     public NoteScale(String key)
     {
         this.key = key;
         buildOctave(key);
+        buildScale(scalePositions, octave);
     }
 
     public ArrayList<String> buildOctave(String key)
@@ -55,5 +79,17 @@ public class NoteScale
         return note;
     }
 
-//TODO NoteScale should return a map of notes and scale positions
+    public void buildScale(ArrayList<String> notes, ArrayList<String> positions)
+    {
+        for (int i = 0; i < octave.size(); ++i) {
+            scale.put(scalePositions.get(i), octave.get(i));
+        }
+    }
+
+    public Map<String, String> getScale()
+    {
+        return scale;
+    }
+
+
 }
