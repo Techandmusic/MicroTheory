@@ -10,7 +10,7 @@ import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
-    private String rootNote;
+    private String rootNote, tone;
     private NoteScale scale;
 
     @Override
@@ -18,12 +18,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        //Spinner menu for root note
+        Spinner spinner = (Spinner) findViewById(R.id.note_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.keys,
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+        //Spinner menu for tone
+        Spinner spinner1 = (Spinner) findViewById(R.id.tone_spinner);
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.tone,
+                android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(adapter1);
+        spinner1.setOnItemSelectedListener(this);
         Button btn = (Button) findViewById(R.id.scale_button);
         btn.setOnClickListener(new View.OnClickListener()
         {
@@ -41,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
         rootNote = (String) parent.getItemAtPosition(position);
+        tone = (String) parent.getItemAtPosition(position);
+
     }
 
     @Override
@@ -49,5 +59,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
+//TODO Build chord class that takes String parameters for root note, and tonality (major, minor, etc)
 
 }

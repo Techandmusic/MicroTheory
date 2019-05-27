@@ -14,6 +14,12 @@
         <item>Bb</item>
         <item>B</item>
     </string-array>
+    <string-array name="tone">
+        <item>Major</item>
+        <item>Minor</item>
+        <item>Blues</item>
+        <item>Pentatonic</item>
+    </string-array>
     <string name="select_message">Choose Root Note:</string>
     <string name="button_text">Generate Scale</string>
 </resources>

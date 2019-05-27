@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,24 +8,50 @@
 
     <TextView
         android:id="@+id/select"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/select_message"
-        android:textSize="@dimen/large_text"/>
-
-    <Spinner
-        android:id="@+id/spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/medium_spacing"
-        android:padding="@dimen/small_spacing" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/medium_spacing"
+        android:text="@string/select_message"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/large_text"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/spinners"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/select"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:layout_marginBottom="@dimen/medium_spacing"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/note_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/medium_spacing"
+            android:padding="@dimen/small_spacing" />
+
+        <Spinner
+            android:id="@+id/tone_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/medium_spacing"
+            android:padding="@dimen/small_spacing" />
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/scale_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/large_spacing"
+        android:layout_below="@+id/spinners"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/medium_spacing"
         android:text="@string/button_text" />
 
 
-</LinearLayout>
+</RelativeLayout>

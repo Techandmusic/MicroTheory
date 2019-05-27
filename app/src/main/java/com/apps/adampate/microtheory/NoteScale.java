@@ -55,5 +55,5 @@ public class NoteScale
         return note;
     }
 
-
+//TODO NoteScale should return a map of notes and scale positions
 }
