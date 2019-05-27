@@ -25,6 +25,7 @@ public class NoteScale
     };
 
     private String key;
+    private String note;
 
     public NoteScale(String key)
     {
@@ -46,6 +47,12 @@ public class NoteScale
         octave.remove(0);
         octave.add(temp);
 
+    }
+
+    public String getNote(int position)
+    {
+        note = octave.get(position);
+        return note;
     }
 
 
