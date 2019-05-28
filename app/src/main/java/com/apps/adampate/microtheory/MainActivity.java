@@ -31,7 +31,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setOnItemSelectedListener(this);
         //Radio button onClicked
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.buttons);
-
+        radioGroup.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                onRadioButtonClicked(v);
+            }
+        });
         Button btn = (Button) findViewById(R.id.scale_button);
         btn.setOnClickListener(new View.OnClickListener()
         {
@@ -50,15 +57,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         boolean checked = ((RadioButton) view).isChecked();
         switch (view.getId()) {
             case R.id.rb_major:
+                if (checked)
                 tone = 1;
                 break;
             case R.id.rb_minor:
+                if (checked)
                 tone = 2;
                 break;
             case R.id.rb_blues:
+                if (checked)
                 tone = 3;
                 break;
             case R.id.rb_pentatonic:
+                if (checked)
                 tone = 4;
                 break;
             default:
@@ -76,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onNothingSelected(AdapterView<?> parent)
     {
-
+        rootNote = "C";
     }
 
 //TODO Build chord class that takes String parameters for root note, and tonality (major, minor, etc)
