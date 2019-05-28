@@ -7,10 +7,10 @@ public class Scale
 {
     private Map<String, String> scaleMap;
     private int tonality;
-    private ArrayList<String> newScale;
+    private ArrayList<String> newScale = new ArrayList<>();
 
 
-    public Scale(Map<String, String> scaleMap, String key, int tonality)
+    public Scale(String key, int tonality)
     {
         this.scaleMap = scaleMap;
         this.tonality = tonality;

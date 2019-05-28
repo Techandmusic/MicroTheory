@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
     private String rootNote;
-    private Chromatic scale;
+    private Scale scale;
     private int tone;
 
     @Override
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v)
             {
-                scale = new Chromatic(rootNote);
+                scale = new Scale(rootNote, tone);
             }
         });
 
@@ -58,19 +58,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         switch (view.getId()) {
             case R.id.rb_major:
                 if (checked)
-                tone = 1;
+                    tone = 1;
                 break;
             case R.id.rb_minor:
                 if (checked)
-                tone = 2;
+                    tone = 2;
                 break;
             case R.id.rb_blues:
                 if (checked)
-                tone = 3;
+                    tone = 3;
                 break;
             case R.id.rb_pentatonic:
                 if (checked)
-                tone = 4;
+                    tone = 4;
                 break;
             default:
                 Toast.makeText(this, R.string.radio_button_default, Toast.LENGTH_SHORT).show();
@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
         rootNote = (String) parent.getItemAtPosition(position);
-
     }
 
     @Override
