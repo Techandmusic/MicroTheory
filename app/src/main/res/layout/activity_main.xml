@@ -17,38 +17,50 @@
         android:textSize="@dimen/large_text"
         android:textStyle="bold" />
 
-    <LinearLayout
-        android:id="@+id/spinners"
+    <Spinner
+        android:id="@+id/note_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/select"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/large_spacing"
-        android:layout_marginBottom="@dimen/medium_spacing"
-        android:orientation="horizontal">
+        android:layout_margin="@dimen/medium_spacing"
+        android:padding="@dimen/small_spacing" />
 
-        <Spinner
-            android:id="@+id/note_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/medium_spacing"
-            android:padding="@dimen/small_spacing" />
+    <RadioGroup
+        android:id="@+id/buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/note_spinner"
+        android:layout_margin="@dimen/medium_spacing"
+        android:padding="@dimen/small_spacing">
 
-        <Spinner
-            android:id="@+id/tone_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/medium_spacing"
-            android:padding="@dimen/small_spacing" />
+        <RadioButton
+            android:id="@+id/rb_major"
+            style="@style/radio_button_style"
+            android:text="@string/major" />
 
-    </LinearLayout>
+        <RadioButton
+            android:id="@+id/rb_minor"
+            style="@style/radio_button_style"
+            android:text="@string/minor" />
+
+        <RadioButton
+            android:id="@+id/rb_blues"
+            style="@style/radio_button_style"
+            android:text="@string/blues" />
+
+        <RadioButton
+            android:id="@+id/rb_pentatonic"
+            style="@style/radio_button_style"
+            android:text="@string/pentatonic" />
+
+    </RadioGroup>
 
 
     <Button
         android:id="@+id/scale_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinners"
+        android:layout_below="@+id/buttons"
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/medium_spacing"
         android:text="@string/button_text" />

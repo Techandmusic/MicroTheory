@@ -14,12 +14,13 @@
         <item>Bb</item>
         <item>B</item>
     </string-array>
-    <string-array name="tone">
-        <item>Major</item>
-        <item>Minor</item>
-        <item>Blues</item>
-        <item>Pentatonic</item>
-    </string-array>
+
+        <string name="major">Major</string>
+        <string name="minor">Minor</string>
+        <string name="blues">Blues</string>
+        <string name="pentatonic">Pentatonic</string>
+
     <string name="select_message">Choose Root Note:</string>
     <string name="button_text">Generate Scale</string>
+    <string name="radio_button_default">Please choose the tonality from radio buttons</string>
 </resources>

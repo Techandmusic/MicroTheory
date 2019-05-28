@@ -6,12 +6,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
-    private String rootNote, tone;
+    private String rootNote;
     private Chromatic scale;
+    private int tone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -25,13 +29,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-        //Spinner menu for tone
-        Spinner spinner1 = (Spinner) findViewById(R.id.tone_spinner);
-        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.tone,
-                android.R.layout.simple_spinner_item);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner1.setAdapter(adapter1);
-        spinner1.setOnItemSelectedListener(this);
+        //Radio button onClicked
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.buttons);
+
         Button btn = (Button) findViewById(R.id.scale_button);
         btn.setOnClickListener(new View.OnClickListener()
         {
@@ -45,11 +45,31 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
+    public void onRadioButtonClicked(View view)
+    {
+        boolean checked = ((RadioButton) view).isChecked();
+        switch (view.getId()) {
+            case R.id.rb_major:
+                tone = 1;
+                break;
+            case R.id.rb_minor:
+                tone = 2;
+                break;
+            case R.id.rb_blues:
+                tone = 3;
+                break;
+            case R.id.rb_pentatonic:
+                tone = 4;
+                break;
+            default:
+                Toast.makeText(this, R.string.radio_button_default, Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
         rootNote = (String) parent.getItemAtPosition(position);
-        tone = (String) parent.getItemAtPosition(position);
 
     }
 

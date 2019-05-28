@@ -35,10 +35,10 @@ public class Chromatic
             add("minorThird");
             add("majorThird");
             add("fourth");
+            add("flatFifth");
             add("fifth");
             add("minorSixth");
             add("majorSixth");
-            add("triTone");
             add("minorSeventh");
             add("majorSeventh");
         }
