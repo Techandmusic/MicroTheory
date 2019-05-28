@@ -6,7 +6,7 @@ import java.util.Map;
 
 //Creates chromatic note scale based on key selected by user
 
-public class NoteScale
+public class Chromatic
 {
     private ArrayList<String> octave = new ArrayList<String>()
     {
@@ -44,17 +44,19 @@ public class NoteScale
         }
     };
 
+
+
     private String key;
     private String note;
     private String tone;
-    private Map<String, String> scale = new HashMap<String, String>();
+    private Map<String, String> chromatic = new HashMap<String, String>();
 
 
-    public NoteScale(String key)
+    public Chromatic(String key)
     {
         this.key = key;
         buildOctave(key);
-        buildScale(scalePositions, octave);
+        buildChromatic(scalePositions, octave);
     }
 
     public ArrayList<String> buildOctave(String key)
@@ -79,16 +81,16 @@ public class NoteScale
         return note;
     }
 
-    public void buildScale(ArrayList<String> notes, ArrayList<String> positions)
+    public void buildChromatic(ArrayList<String> notes, ArrayList<String> positions)
     {
         for (int i = 0; i < octave.size(); ++i) {
-            scale.put(scalePositions.get(i), octave.get(i));
+            chromatic.put(scalePositions.get(i), octave.get(i));
         }
     }
 
-    public Map<String, String> getScale()
+    public Map<String, String> getChromatic()
     {
-        return scale;
+        return chromatic;
     }
 
 

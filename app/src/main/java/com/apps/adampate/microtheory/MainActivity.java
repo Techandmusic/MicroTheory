@@ -11,7 +11,7 @@ import android.widget.Spinner;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
     private String rootNote, tone;
-    private NoteScale scale;
+    private Chromatic scale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v)
             {
-                scale = new NoteScale(rootNote);
+                scale = new Chromatic(rootNote);
             }
         });
 
