@@ -7,12 +7,13 @@ public class Scale
 {
     private Map<String, String> scaleMap;
     private int tonality;
+    private String key;
     private ArrayList<String> newScale = new ArrayList<>();
 
 
     public Scale(String key, int tonality)
     {
-        this.scaleMap = scaleMap;
+        this.key = key;
         this.tonality = tonality;
         Chromatic chromatic = new Chromatic(key);
         scaleMap = chromatic.getChromatic();
@@ -64,6 +65,11 @@ public class Scale
 
         }
 
+        return newScale;
+    }
+
+    public ArrayList<String> getNewScale()
+    {
         return newScale;
     }
 }

@@ -9,13 +9,19 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
     private String rootNote;
     private Scale scale;
     private int tone;
+    private ArrayList<String> notes;
+    private TextView noteView;
+    private Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -24,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         //Spinner menu for root note
         Spinner spinner = (Spinner) findViewById(R.id.note_spinner);
+        noteView = (TextView) findViewById(R.id.noteView);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.keys,
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -39,15 +46,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 onRadioButtonClicked(v);
             }
         });
-        Button btn = (Button) findViewById(R.id.scale_button);
+        btn = (Button) findViewById(R.id.scale_button);
         btn.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 scale = new Scale(rootNote, tone);
+                printScales(notes, noteView);
             }
         });
+
+
 
 
     }
@@ -91,4 +101,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 //TODO Build chord class that takes String parameters for root note, and tonality (major, minor, etc)
 
+    public void printScales(ArrayList<String> noteScale, TextView textView)
+    {
+           for (int i = 0; i < noteScale.size();++i) {
+               String note = noteScale.get(i) + ",";
+               textView.append(note);
+           }
+    }
 }

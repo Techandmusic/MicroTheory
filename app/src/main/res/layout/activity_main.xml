@@ -36,6 +36,7 @@
         <RadioButton
             android:id="@+id/rb_major"
             style="@style/radio_button_style"
+            android:checked="true"
             android:text="@string/major" />
 
         <RadioButton
@@ -64,6 +65,14 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/medium_spacing"
         android:text="@string/button_text" />
+
+    <TextView
+        android:id="@+id/noteView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/xl_spacing"
+        android:padding="@dimen/small_spacing"
+        android:layout_marginLeft="@dimen/medium_spacing"
+        android:layout_marginRight="@dimen/medium_spacing"/>
 
 
 </RelativeLayout>
