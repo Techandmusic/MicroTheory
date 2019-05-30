@@ -57,22 +57,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v)
             {
-                if (minor.isChecked())
-                {
-                    tone = 2;
-                }
-                else if (blues.isChecked())
-                {
-                    tone = 3;
-                }
-                else if (pentatonic.isChecked())
-                {
-                    tone = 4;
-                }
-                else
-                {
-                    tone = 1;
-                }
+                onRadioButtonClicked(v);
 
             }
         });
