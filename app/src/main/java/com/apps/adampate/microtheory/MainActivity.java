@@ -55,18 +55,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v)
             {
-               new scaleLoader();
-
+                Toast.makeText(MainActivity.this, "I clicked the button", Toast.LENGTH_SHORT).show();
 
             }
         });
 
-        spinner.setVisibility(View.GONE);
+        //spinner.setVisibility(View.GONE);
 
 
 
     }
-//TODO troubleshoot onCLick handler for btn
+
     public void onRadioButtonClicked(View view)
     {
         boolean checked = ((RadioButton) view).isChecked();
@@ -134,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         protected ArrayList doInBackground(String... strings)
         {
 
-            spinner.setVisibility(View.VISIBLE);
+           // spinner.setVisibility(View.VISIBLE);
             scale = new Scale(rootNote, tone);
             notes = scale.getNewScale();
             return notes;
