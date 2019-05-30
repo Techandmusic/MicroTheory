@@ -15,15 +15,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.IllegalFormatCodePointException;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
-    private String rootNote;
-    private Scale scale;
-    private int tone;
-    private ArrayList<String> notes;
-    private TextView noteView;
-    private Button btn;
+    String rootNote;
+    Scale scale;
+    int tone;
+    ArrayList<String> notes;
+    TextView noteView;
+    Button btn;
+    RadioGroup radioGroup = (RadioGroup) findViewById(R.id.buttons);
+    RadioButton major = findViewById(R.id.rb_major);
+    RadioButton minor = findViewById(R.id.rb_minor);
+    RadioButton blues = findViewById(R.id.rb_blues);
+    RadioButton pentatonic = findViewById(R.id.rb_pentatonic);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,13 +47,33 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
         //Radio button onClicked
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.buttons);
+        radioGroup = (RadioGroup) findViewById(R.id.buttons);
+        major = findViewById(R.id.rb_major);
+        minor = findViewById(R.id.rb_minor);
+        blues = findViewById(R.id.rb_blues);
+        pentatonic = findViewById(R.id.rb_pentatonic);
         radioGroup.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                onRadioButtonClicked(v);
+                if (minor.isChecked())
+                {
+                    tone = 2;
+                }
+                else if (blues.isChecked())
+                {
+                    tone = 3;
+                }
+                else if (pentatonic.isChecked())
+                {
+                    tone = 4;
+                }
+                else
+                {
+                    tone = 1;
+                }
+
             }
         });
         btn = (Button) findViewById(R.id.scale_button);
@@ -55,12 +82,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v)
             {
-                Toast.makeText(MainActivity.this, "I clicked the button", Toast.LENGTH_SHORT).show();
-
+                new scaleLoader();
             }
         });
 
-        //spinner.setVisibility(View.GONE);
+
 
 
 
@@ -120,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private class scaleLoader extends AsyncTask<String, String, ArrayList<String>>
     {
-        public ProgressBar spinner = (ProgressBar) findViewById(R.id.progressBar1);;
+        public ProgressBar prog = (ProgressBar) findViewById(R.id.progressBar1);;
 
         @Override
         protected void onPreExecute()
@@ -133,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         protected ArrayList doInBackground(String... strings)
         {
 
-           // spinner.setVisibility(View.VISIBLE);
+            prog.setVisibility(View.VISIBLE);
             scale = new Scale(rootNote, tone);
             notes = scale.getNewScale();
             return notes;
@@ -143,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         protected void onPostExecute(ArrayList<String> result)
         {
             super.onPostExecute(notes);
-            spinner.setVisibility(View.GONE);
+            prog.setVisibility(View.GONE);
             printScales(notes, noteView);
             noteView.setVisibility(View.VISIBLE);
         }

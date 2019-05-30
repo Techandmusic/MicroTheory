@@ -79,8 +79,9 @@
         android:id="@+id/progressBar1"
         android:layout_below="@+id/scale_button"
         style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/medium_spacing"
+        android:visibility="gone"
+        android:layout_height="@dimen/small_spacing"
         android:layout_centerHorizontal="true" />
 
 
