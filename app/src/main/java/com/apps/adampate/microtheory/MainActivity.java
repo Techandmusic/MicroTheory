@@ -1,11 +1,13 @@
 package com.apps.adampate.microtheory;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //Spinner menu for root note
         Spinner spinner = (Spinner) findViewById(R.id.note_spinner);
         noteView = (TextView) findViewById(R.id.noteView);
+        noteView.setText("Scale appears here");
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.keys,
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -52,16 +55,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v)
             {
-                scale = new Scale(rootNote, tone);
-                printScales(notes, noteView);
+               new scaleLoader();
+
+
             }
         });
 
+        spinner.setVisibility(View.GONE);
 
 
 
     }
-
+//TODO troubleshoot onCLick handler for btn
     public void onRadioButtonClicked(View view)
     {
         boolean checked = ((RadioButton) view).isChecked();
@@ -103,9 +108,45 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void printScales(ArrayList<String> noteScale, TextView textView)
     {
-           for (int i = 0; i < noteScale.size();++i) {
-               String note = noteScale.get(i) + ",";
-               textView.append(note);
-           }
+        for (int i = 0; i < noteScale.size(); ++i) {
+            String note = noteScale.get(i) + ",";
+            textView.append(note);
+        }
+    }
+
+    public void scaleError()
+    {
+        Toast.makeText(this, "Scale is empty", Toast.LENGTH_SHORT).show();
+    }
+
+    private class scaleLoader extends AsyncTask<String, String, ArrayList<String>>
+    {
+        public ProgressBar spinner = (ProgressBar) findViewById(R.id.progressBar1);;
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected ArrayList doInBackground(String... strings)
+        {
+
+            spinner.setVisibility(View.VISIBLE);
+            scale = new Scale(rootNote, tone);
+            notes = scale.getNewScale();
+            return notes;
+        }
+
+
+        protected void onPostExecute(ArrayList<String> result)
+        {
+            super.onPostExecute(notes);
+            spinner.setVisibility(View.GONE);
+            printScales(notes, noteView);
+            noteView.setVisibility(View.VISIBLE);
+        }
     }
 }

@@ -45,7 +45,6 @@ public class Chromatic
     };
 
 
-
     private String key;
     private String note;
     private String tone;

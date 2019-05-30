@@ -18,6 +18,7 @@ public class Scale
         Chromatic chromatic = new Chromatic(key);
         scaleMap = chromatic.getChromatic();
         makeScale(tonality);
+
     }
 
     public ArrayList<String> makeScale(int tone)
