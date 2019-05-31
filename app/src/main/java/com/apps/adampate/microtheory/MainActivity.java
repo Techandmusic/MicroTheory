@@ -15,21 +15,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.IllegalFormatCodePointException;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
     String rootNote;
-    Scale scale;
+    //Scale scale;
     int tone;
     ArrayList<String> notes;
     TextView noteView;
     Button btn;
-    RadioGroup radioGroup = (RadioGroup) findViewById(R.id.buttons);
-    RadioButton major = findViewById(R.id.rb_major);
-    RadioButton minor = findViewById(R.id.rb_minor);
-    RadioButton blues = findViewById(R.id.rb_blues);
-    RadioButton pentatonic = findViewById(R.id.rb_pentatonic);
+    RadioGroup radioGroup;
+    RadioButton major;
+    RadioButton minor;
+    RadioButton blues;
+    RadioButton pentatonic;
+    ProgressBar prog;
+    Chromatic chromatic;
 
 
     @Override
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Spinner spinner = (Spinner) findViewById(R.id.note_spinner);
         noteView = (TextView) findViewById(R.id.noteView);
         noteView.setText("Scale appears here");
+        prog = findViewById(R.id.progressBar1);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.keys,
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -67,12 +69,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v)
             {
-                new scaleLoader();
+                 scaleLoader loader = new scaleLoader();
+                 loader.execute();
             }
         });
-
-
-
 
 
     }
@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
         rootNote = (String) parent.getItemAtPosition(position);
+        chromatic = new Chromatic(rootNote);
     }
 
     @Override
@@ -131,22 +132,30 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private class scaleLoader extends AsyncTask<String, String, ArrayList<String>>
     {
-        public ProgressBar prog = (ProgressBar) findViewById(R.id.progressBar1);;
+        Scale scale;
+
+
 
         @Override
         protected void onPreExecute()
         {
             super.onPreExecute();
+            prog.setVisibility(View.VISIBLE);
+            prog.setIndeterminate(false);
 
         }
 
         @Override
-        protected ArrayList doInBackground(String... strings)
+        protected ArrayList<String> doInBackground(String... strings)
         {
+            try {
+                scale = new Scale(chromatic, tone);
+                notes = scale.getNewScale();
 
-            prog.setVisibility(View.VISIBLE);
-            scale = new Scale(rootNote, tone);
-            notes = scale.getNewScale();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             return notes;
         }
 
@@ -154,9 +163,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         protected void onPostExecute(ArrayList<String> result)
         {
             super.onPostExecute(notes);
-            prog.setVisibility(View.GONE);
-            printScales(notes, noteView);
-            noteView.setVisibility(View.VISIBLE);
+
+            if (notes != null) {
+                prog.setVisibility(View.GONE);
+                noteView.setText("");
+                printScales(notes, noteView);
+                noteView.setVisibility(View.VISIBLE);
+
+            } else {
+                Toast.makeText(MainActivity.this, "Notes ArrayList is null", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

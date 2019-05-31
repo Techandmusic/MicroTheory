@@ -6,16 +6,12 @@ import java.util.Map;
 public class Scale
 {
     private Map<String, String> scaleMap;
-    private int tonality;
-    private String key;
     private ArrayList<String> newScale = new ArrayList<>();
 
 
-    public Scale(String key, int tonality)
+    public Scale(Chromatic chromatic, int tonality)
     {
-        this.key = key;
-        this.tonality = tonality;
-        Chromatic chromatic = new Chromatic(key);
+
         scaleMap = chromatic.getChromatic();
         makeScale(tonality);
 

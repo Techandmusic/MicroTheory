@@ -83,7 +83,7 @@ public class Chromatic
     public void buildChromatic(ArrayList<String> notes, ArrayList<String> positions)
     {
         for (int i = 0; i < octave.size(); ++i) {
-            chromatic.put(scalePositions.get(i), octave.get(i));
+            chromatic.put(notes.get(i), positions.get(i));
         }
     }
 
