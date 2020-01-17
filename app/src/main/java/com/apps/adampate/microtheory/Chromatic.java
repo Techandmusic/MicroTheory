@@ -47,7 +47,7 @@ public class Chromatic
 
     private String key;
     private String note;
-    private String tone;
+    //private String tone;
     private Map<String, String> chromatic = new HashMap<String, String>();
 
 
