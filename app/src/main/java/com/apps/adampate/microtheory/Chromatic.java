@@ -6,10 +6,8 @@ import java.util.Map;
 
 //Creates chromatic note scale based on key selected by user
 
-public class Chromatic
-{
-    private ArrayList<String> octave = new ArrayList<String>()
-    {
+public class Chromatic {
+    private ArrayList<String> octave = new ArrayList<String>() {
         {
             add("C");
             add("C#");
@@ -26,8 +24,7 @@ public class Chromatic
         }
     };
 
-    private ArrayList<String> scalePositions = new ArrayList<String>()
-    {
+    private ArrayList<String> scalePositions = new ArrayList<String>() {
         {
             add("root");
             add("minorSecond");
@@ -51,44 +48,38 @@ public class Chromatic
     private Map<String, String> chromatic = new HashMap<String, String>();
 
 
-    public Chromatic(String key)
-    {
+    public Chromatic(String key) {
         this.key = key;
         buildOctave(key);
         buildChromatic(scalePositions, octave);
     }
 
-    public ArrayList<String> buildOctave(String key)
-    {
+    public ArrayList<String> buildOctave(String key) {
         while (octave.get(0) != key) {
             toEnd();
         }
         return octave;
     }
 
-    public void toEnd()
-    {
+    public void toEnd() {
         String temp = octave.get(0);
         octave.remove(0);
         octave.add(temp);
 
     }
 
-    public String getNote(int position)
-    {
+    public String getNote(int position) {
         note = octave.get(position);
         return note;
     }
 
-    public void buildChromatic(ArrayList<String> notes, ArrayList<String> positions)
-    {
+    public void buildChromatic(ArrayList<String> notes, ArrayList<String> positions) {
         for (int i = 0; i < octave.size(); ++i) {
             chromatic.put(notes.get(i), positions.get(i));
         }
     }
 
-    public Map<String, String> getChromatic()
-    {
+    public Map<String, String> getChromatic() {
         return chromatic;
     }
 

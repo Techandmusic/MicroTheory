@@ -15,6 +15,14 @@
         <item>B</item>
     </string-array>
 
+    <string-array name="scales">
+        <item>Major</item>
+        <item>Minor</item>
+        <item>Blues</item>
+        <item>Pentatonic</item>
+        <item>Mixolydian</item>
+    </string-array>
+
     <string name="major">Major</string>
     <string name="minor">Minor</string>
     <string name="blues">Blues</string>
